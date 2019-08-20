@@ -1,6 +1,11 @@
 body {
+    background-color: grey;
     text-align: center;
-    width: 1000px;
-    margin-left: 212px;
+    width: 650px;
+    margin-left: 387px;
 }
-
+ul {
+    text-align: left;
+    margin-left: 200px;
+/*     width: 100%; */
+}
