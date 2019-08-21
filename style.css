@@ -1,3 +1,16 @@
+@media only screen and (max-width: 450px) {
+    body {
+        background-color: lightblue;
+        text-align: center;
+        width: 45.62%;
+        margin-left: 27.2%;
+    }
+    ul {
+        text-align: left;
+        margin-left: 30.8%;
+    }
+}
+
 body {
     background-color: grey;
     text-align: center;
@@ -11,17 +24,4 @@ ul {
 /*     margin-left: 200px; */
        margin-left: 30.8%;
 /*     width: 100%; */
-}
-
-@media only screen and (max-width: 450px) {
-    body {
-        background-color: grey;
-        text-align: center;
-        width: 45.62%;
-        margin-left: 27.2%;
-    }
-    ul {
-        text-align: left;
-        margin-left: 30.8%;
-    }
 }
