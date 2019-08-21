@@ -18,9 +18,10 @@ ul {
         background-color: grey;
         text-align: center;
         width: 90%;
+        margin-left: 5%;
     }
     ul {
         text-align: left;
-        margin-left: 5%;
+        margin-left: 30%;
     }
 }
