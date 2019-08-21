@@ -15,10 +15,9 @@ ul {
 
 @media only screen and (max-width: 450px) {
     body {
-        background-color: lightblue;
+        background-color: grey;
         text-align: center;
-        width: 45.62%;
-        margin-left: 27.2%;
+        width: 90%;
     }
     ul {
         text-align: left;
