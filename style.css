@@ -1,16 +1,16 @@
 body {
     background-color: #909090;
     text-align: center;
-/*     width: 650px; */
-    width: 45.62%;
-/*     margin-left: 387px; */
-    margin-left: 27.2%;
+    /*width: 650px; */
+    /*width: 45.62%;*/
+    margin-left: auto;
+    margin-right: auto;
 }
 ul {
     text-align: left;
-/*     margin-left: 200px; */
-       margin-left: 30.8%;
-/*     width: 100%; */
+    /*margin-left: 200px; */
+    margin-left: 30.8%;
+    /*width: 100%; */
 }
 
 @media only screen and (max-width: 450px) {
@@ -24,4 +24,10 @@ ul {
         text-align: left;
         margin-left: 0%;
     }
+}
+
+#Projects {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
