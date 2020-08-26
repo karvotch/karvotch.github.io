@@ -1,12 +1,77 @@
+<!DOCTYPE html>
 <html>
     <head>
-    	<meta charset="UTF-8">
-        <title>Clothing Search Engine</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="../style.css">
+        <meta charset="UTF-8">
+        <title>Truvera - Shop the Latest Fashion Trends</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <!-- <script src="jquery-3.3.0.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
     </head>
+
     <body>
-        <h1>Clothing Search Engine</h1>
-        
+        <div id="menuBar">
+            <a href="/" id="home">Truvera</a>
+            <div id="subMenuBar">
+                <!-- Need to add separate web page here. -->
+                    <a href="/" id="todayDeals">Today's Deals</a>
+                    <a href="/" id="signIn">Sign In</a>
+            </div>
+        </div>
+
+        <div id="searchBar">
+            <!-- <form action="/s" method="GET"> -->
+            <!-- <form action="http://127.0.0.1:8000/myaction" method="post"> -->
+            <form id="searchForm">
+                    <!-- <input type="text" onsubmit="foo()" name="" value="" id="search"> <br> -->
+                    <input type="text" value="" id="searchElement">
+            </form>
+        </div>
+
+        <div>
+            <div id="productGrid">
+                
+            </div>
+        </div>
+
+        <script>
+            function scrapeValue() {
+                // var search = document.querySelector('input');
+                // var searchForm = document.querySelector('form');
+                var searchForm = document.getElementById("searchForm");
+                function handleForm(event) { event.preventDefault(); }
+                searchForm.addEventListener('submit', handleForm);
+                var searchElement = document.getElementById("searchElement");
+                var productGrid = document.getElementById('productGrid');
+
+                searchForm.onsubmit = function() {
+                    var searchValue = searchElement.value;
+                    console.log(searchValue);
+                    updateDisplay(searchValue);
+                };
+
+                function updateDisplay(searchValue) {
+                searchValue = searchValue.replace(new RegExp(" ", "g"), "+");
+                searchValue = searchValue.toLowerCase();
+                var url = '/?search=' + searchValue;
+
+                var request = new XMLHttpRequest();
+                request.open('GET', url);
+                request.responseType = 'text';
+
+                request.onload = function() {
+                  // productGrid.textContent = request.response;
+                  productGrid.innerHTML = request.response;
+                };
+
+                request.send();
+                };
+
+                // updateDisplay('Verse 1');
+                // search.value = 'Verse 1';
+                // console.log(search.value);
+            }
+            
+            scrapeValue();
+        </script>
     </body>
 </html>

@@ -1,17 +1,22 @@
+canv = document.getElementById("mainCanvas");
+document.addEventListener("keydown", keyPush);
+ctx = canv.getContext("2d");
+
+    // Setting the width and length of the canvas 
+        // to the width and length of the monitor to perfectly fit the screen.
+canv.width = window.innerWidth-20;
+canv.height = window.innerHeight;
+
+min = 0;
+maxRange = 100;
+
+barWidth = Math.floor(canv.width / maxRange);
+barHeight = canv.height / maxRange;
+console.log(canv.width, barWidth, maxRange*barWidth);
+
 function prepare(gameSpeed) {
-    canv = document.getElementById("mainCanvas");
-
-        // Setting the width and length of the canvas 
-            // to the width and length of the monitor to perfectly fit the screen.
-    canv.width = window.innerWidth;
-    canv.height = window.innerHeight;
-
-    min = 0;
-    maxRange = 100;
+    
     max = maxRange;
-
-    barWidth = canv.width / maxRange;
-    barHeight = canv.height / maxRange;
 
         // The deltaTime and lastFrame variables are being used to interval the game logic.
             // This is necessary to separate game logic from game rendering.
@@ -71,9 +76,29 @@ function render() {
         // count2 +=1;
 
         sortFunc();
-        if(max == 2) {
-            pauseGame = true;
-            console.log(Date.now() - startTime);
+        if(sortNum == 1) {
+            if(max == 2) {
+                pauseGame = true;
+                console.log(Date.now() - startTime);
+            }
+        }
+        else if(sortNum == 2) {
+            if(count2 == max-2) {
+                pauseGame = true;
+                console.log(Date.now() - startTime);
+            }
+        }
+        else if(sortNum == 3) {
+            if(count2 == max-1) {
+                pauseGame = true;
+                console.log(Date.now() - startTime);
+            }
+        }
+        else if(sortNum == 4) {
+            if(finished) {
+                pauseGame = true;
+                console.log(Date.now() - startTime);
+            }
         }
     }
 
@@ -129,11 +154,11 @@ function keyPush(evt) {
 
     // The draw function that deals with window resizing.
 function draw() {
-    canv.width  = window.innerWidth;
+    canv.width  = window.innerWidth-20;
     canv.height = window.innerHeight;
 
-    barWidth = canv.width / maxRange;
+    barWidth = Math.floor(canv.width / maxRange);
     barHeight = canv.height / maxRange;
 }
 
-prepare(100);
+// prepare(100);
