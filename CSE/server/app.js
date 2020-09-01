@@ -1,4 +1,5 @@
-var http = require('http');
+const express = require('express');
+const app = express();
 var fs = require('fs');
 var path = require('path');
 const url = require('url');
@@ -59,17 +60,33 @@ function priceToHTML(productPrice, number) {
 }
 
 
-http.createServer(function (request, response) {
+app.use((req, res, next) => {
+    // Choose which IP addresses are allowed to connect.
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header(
+        "Access-Control-Allow-Headers", 
+        "Origin, X-Requested-With, Content-Type, Accept, Authorization" // Can also be a '*' to allow any header.
+    );
+    if(req.method === 'OPTIONS') {
+        res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
+        return res.status(200).json({});
+    }
+    next();
+});
+
+
+app.get('/',(req,res) => {
     console.log('request ', request.url);
 
     var filePath = '.' + request.url;
+    console.log(filePath);
     var extname = String(path.extname(filePath)).toLowerCase();
     console.log(extname);
     var params = url.parse(request.url,true).query;
 
     if (filePath == './' || extname == '.js' || extname == '.css') {
         if(filePath == './') {
-            filePath = './index.html';
+            filePath = 'W:/WebDev/pages/karvotch.github.io/CSE/server/clothingSearchEngine.html';
         }
         var extname = String(path.extname(filePath)).toLowerCase();
         var mimeTypes = {
@@ -90,22 +107,29 @@ http.createServer(function (request, response) {
         };
 
         var contentType = mimeTypes[extname] || 'application/octet-stream';
+        console.log(filePath);
+        console.log(mimeTypes[extname], extname);
 
         fs.readFile(filePath, function(error, content) {
             if (error) {
+                console.log('HELLO');
                 if(error.code == 'ENOENT') {
+                    console.log('Hello');
+                    console.log(error);
                     fs.readFile('./404.html', function(error, content) {
                         response.writeHead(200, { 'Content-Type': contentType });
                         response.end(content, 'utf-8');
                     });
                 }
                 else {
+                    console.log('HEllo');
                     response.writeHead(500);
                     response.end('Sorry, check with the site admin for error: '+error.code+' ..\n');
                     response.end();
                 }
             }
             else {
+                console.log('hello');
                 response.writeHead(200, { 'Content-Type': contentType });
                 response.end(content, 'utf-8');
             }
@@ -199,6 +223,8 @@ http.createServer(function (request, response) {
           browser.close();
         })();
     }
-    
-}).listen(8000);
-console.log('Server running at http://127.0.0.1:8000/');
+})
+
+
+
+module.exports = app;
