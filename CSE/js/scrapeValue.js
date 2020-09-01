@@ -16,7 +16,7 @@ function scrapeValue() {
                 function updateDisplay(searchValue) {
                 searchValue = searchValue.replace(new RegExp(" ", "g"), "+");
                 searchValue = searchValue.toLowerCase();
-                var url = 'https://cse-server.vercel.app/?search=' + searchValue;
+                var url = 'https://cse-server.vercel.app/s?search=' + searchValue;
 
                 var request = new XMLHttpRequest();
                 request.open('GET', url);

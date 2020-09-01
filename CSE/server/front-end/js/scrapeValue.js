@@ -1,40 +1,4 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Truvera - Shop the Latest Fashion Trends</title>
-        <link rel="stylesheet" type="text/css" href="style.css">
-        <!-- <script src="jquery-3.3.0.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
-    </head>
-
-    <body>
-        <div id="menuBar">
-            <a href="/" id="home">Truvera</a>
-            <div id="subMenuBar">
-                <!-- Need to add separate web page here. -->
-                    <a href="/" id="todayDeals">Today's Deals</a>
-                    <a href="/" id="signIn">Sign In</a>
-            </div>
-        </div>
-
-        <div id="searchBar">
-            <!-- <form action="/s" method="GET"> -->
-            <!-- <form action="http://127.0.0.1:8000/myaction" method="post"> -->
-            <form id="searchForm">
-                    <!-- <input type="text" onsubmit="foo()" name="" value="" id="search"> <br> -->
-                    <input type="text" value="" id="searchElement">
-            </form>
-        </div>
-
-        <div>
-            <div id="productGrid">
-                
-            </div>
-        </div>
-
-        <script>
-            function scrapeValue() {
+function scrapeValue() {
                 // var search = document.querySelector('input');
                 // var searchForm = document.querySelector('form');
                 var searchForm = document.getElementById("searchForm");
@@ -52,7 +16,9 @@
                 function updateDisplay(searchValue) {
                 searchValue = searchValue.replace(new RegExp(" ", "g"), "+");
                 searchValue = searchValue.toLowerCase();
-                var url = '/?search=' + searchValue;
+                console.log(window.location.href);
+                console.log(document.URL);
+                var url = document.URL + 's?search=' + searchValue;
 
                 var request = new XMLHttpRequest();
                 request.open('GET', url);
@@ -72,6 +38,3 @@
             }
             
             scrapeValue();
-        </script>
-    </body>
-</html>
