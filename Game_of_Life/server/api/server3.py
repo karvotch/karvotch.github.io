@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
-# WS server example
-
+from http.server import BaseHTTPRequestHandler
 import asyncio
 import websockets
 import json
@@ -117,7 +116,25 @@ def addToJSON(data):
     return 0
 
 #start_server = websockets.serve(server, "192.168.1.18", 8000, ping_interval=None)
-start_server = websockets.serve(server, "192.168.1.16", 8000)
+# start_server = websockets.serve(server, "192.168.1.16", 8000)
+start_server = websockets.serve(server, "", 8000)
 
 asyncio.get_event_loop().run_until_complete(start_server)
 asyncio.get_event_loop().run_forever()
+
+
+class handler(BaseHTTPRequestHandler):
+
+  def do_GET(self):
+    self.send_response(200)
+    self.send_header('Content-type', 'text/plain')
+    self.end_headers()
+    self.wfile.write(str(datetime.now().strftime('%Y-%m-%d %H:%M:%S')).encode())
+    return
+
+  def do_GET(self):
+    self.send_response(200)
+    self.send_header('Content-type', 'text/plain')
+    self.end_headers()
+    self.wfile.write(str(datetime.now().strftime('%Y-%m-%d %H:%M:%S')).encode())
+    return
