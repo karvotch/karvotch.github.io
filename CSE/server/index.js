@@ -37,7 +37,7 @@ async function fetchItems(searchValue) {
 
 function textToHTML(productText, number) {
     if(productText != null) {
-        var htmlCode = '<div id="productDescription' + number + '" class="productsDescription"> <a id="productLink' + number + '">' + productText + '</a>' + '</div>';
+        var htmlCode = '<div id="productDescription' + number + '" class="productsDescription"> <a id="productLink' + number + '" class="productsLink">' + productText + '</a>' + '</div>';
         return htmlCode;
     }
     // console.log(htmlCode);
@@ -46,7 +46,7 @@ function textToHTML(productText, number) {
 
 function imageToHTML(productImage, number) {
     if(productImage != null) {
-        var htmlCode = '<div id="product' + number + '"> <div id="image' + number + '" class="images">' + '<img id="productImage' + number + '" src="' + productImage + '"> <br> </div>';
+        var htmlCode = '<div id="product' + number + '" class="products"> <div id="image' + number + '" class="productsImages">' + '<img id="productImage' + number + '" src="' + productImage + '"> <br> </div>';
         return htmlCode;
     }
     // console.log(htmlCode);
