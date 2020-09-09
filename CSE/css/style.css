@@ -73,20 +73,18 @@ body {
 }
 
 .products {
-    margin: 10px;
-    width: 300px;
-    height: 500px;
+    float: left;
+    margin: 0px;
+    width: 30%;
+    height: 100%;
+    text-align: center;
 }
 
 .productsDescription {
     /*text-align: center;*/
     /*height: 40px;*/
-    width: 200px;
+    width: 100%;
 }
-
-/*.productPrice {
-    
-}*/
 
 .productsLink:link {
   color: black;
@@ -106,4 +104,8 @@ body {
 .productsLink:active {
   color: black;
   text-decoration: none;
+}
+
+img {
+    max-width: 100%;
 }
