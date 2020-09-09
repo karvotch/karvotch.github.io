@@ -1,3 +1,5 @@
+alert("Scrolling = zoom\n Spacebar = pause\n Left Click = placing cell\n Left Click drag = drag");
+
 window.onload = function() {
     //canv = document.getElementById("mainCanvas");
     //canv.width = window.innerWidth;
@@ -46,6 +48,8 @@ canv.height = window.innerHeight;
     // The dimensions of the sandbox in cells.
 sandboxWidth = 400;
 sandboxHeight = 400;
+// sandboxWidth = 1000;
+// sandboxHeight = 1000;
 
     // The pixel the top left corner (origin) is on.
 gameViewOriginX = 0;
