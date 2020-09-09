@@ -1,6 +1,7 @@
-alert("Scrolling = zoom\n Spacebar = pause\n Left Click = placing cell\n Left Click drag = drag");
+// alert("Scrolling = zoom\n Spacebar = pause\n Left Click = placing cell\n Left Click drag = drag");
 
 window.onload = function() {
+    alert("Scrolling = zoom\n Spacebar = pause\n Left Click = placing cell\n Left Click drag = drag");
     //canv = document.getElementById("mainCanvas");
     //canv.width = window.innerWidth;
     //canv.height = window.innerHeight;
