@@ -26,7 +26,7 @@ window.onload = function() {
         // The gameSocket.readyState = CONNECTING at first and becomes
             // OPEN once the connection is ready.
     // gameSocket = new WebSocket('ws://192.168.1.16:8000');
-    gameSocket = new WebSocket('ws://gol-server.vercel.app');
+    gameSocket = new WebSocket('wss://gol-server.vercel.app');
         // Closing the gameSocket connection.
             // It may be a good idea to check the gameSocket.bufferedAmount attribute before closing the connection.
                 // IDEA: When wanting to close the connection set boolean 'closing' to true.
