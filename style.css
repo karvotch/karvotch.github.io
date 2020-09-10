@@ -18,18 +18,18 @@ ul {
     /*width: 100%; */
 }
 
-video {
-    max-height: 192px;
-    max-width: 108px;
-}
-
-img {
+.root-img {
     max-width: 126px;
     max-height: 131px;
 }
 
 tr {
     height: 200px;
+}
+
+div, p, h1, h2, h3, h4 {
+    font-family: 'Roboto', sans-serif;
+    color: white;
 }
 
 @media only screen and (max-width: 450px) {
@@ -43,6 +43,41 @@ tr {
         text-align: left;
         margin-left: 0%;
     }
+}
+
+.home-wrapper {
+    text-align: center;
+    z-index: 2;
+}
+
+.center {
+    top: 50px;
+    left: 50%;
+    position: absolute;
+    /*-webkit-transform: translate(-50%,-50%);*/
+    transform: translate(-50%,-50%);
+}
+
+.site-title-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.site-title {
+    position: relative;
+    font-size: 90px;
+}
+
+#title-foreground {
+    z-index: 1;
+}
+
+#title-background {
+    color: #e853e7;
+    bottom: -5px;
+    left: -5px;
+    position: absolute;
 }
 
 #projectsTable {
