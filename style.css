@@ -1,16 +1,35 @@
 body {
-    background-color: #909090;
+    background-color: #0f1e3b;
+    color: #ffffff;
     text-align: center;
     /*width: 650px; */
     /*width: 45.62%;*/
     margin-left: auto;
     margin-right: auto;
 }
+a {
+    color: #ffffff;
+}
+
 ul {
     text-align: left;
     /*margin-left: 200px; */
     margin-left: 30.8%;
     /*width: 100%; */
+}
+
+video {
+    max-height: 192px;
+    max-width: 108px;
+}
+
+img {
+    max-width: 126px;
+    max-height: 131px;
+}
+
+tr {
+    height: 200px;
 }
 
 @media only screen and (max-width: 450px) {
@@ -26,7 +45,7 @@ ul {
     }
 }
 
-#Projects {
+#projectsTable {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
