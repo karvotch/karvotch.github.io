@@ -12,8 +12,12 @@ let callSort2 = function() {
 
 function sort2() {
     let isLess = count2;
-    for(var i = 0; i < max; i++) {
+    for(var i = 1; i < max-count2; i++) {
         if(intArray[count2+i] < intArray[isLess]) {
+            if(count2 > 97) {
+                console.log(count2+i);
+                console.log(isLess);
+            }
             isLess = count2+i;
         }
     }

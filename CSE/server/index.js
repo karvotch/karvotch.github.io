@@ -25,14 +25,34 @@ var mimeTypes = {
     };
 
 async function fetchItems(searchValue) {
-    let targetURL = 'https://redsky.target.com/v2/plp/search/?channel=web&count=24&default_purchasability_filter=true&facet_recovery=false&' + 'isDLP=false&keyword=' + searchValue + '&offset=0&pageId=%2Fs%2Fface+mask&pricing_store_id=294&scheduled_delivery_store_id=294&' + 'store_ids=294%2C3251%2C1362%2C183%2C1309&visitorId=0171326AB8080201BA1EC63BED54D32C&include_sponsored_search_v2=true&ppatok=AOxT33a&' + 'platform=desktop&useragent=Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%3B+rv%3A75.0%29+Gecko%2F20100101+Firefox%2F75.0&key=eb2551e4accc14f38cc42d32fbc2b2ea';
+    console.log("Inside fetchItems");
+    let targetURL = 'https://redsky.target.com/v2/plp/search/?channel=web&count=24&default_purchasability_filter=true&facet_recovery=false&' + 'isDLP=false&keyword=' + searchValue + '&offset=0&pageId=%2Fs%2Fface+mask&pricing_store_id=294&scheduled_delivery_store_id=294&' + 'store_ids=294%2C3251%2C1362%2C183%2C1309&visitorId=0171326AB8080201BA1EC63BED54D32C&include_sponsored_search_v2=true&ppatok=AOxT33a&' + 'platform=server&key=eb2551e4accc14f38cc42d32fbc2b2eb';
     let items = fetch(targetURL)
-        .then(res => res.json())
+        //.then(res => res.json())
+        .then(res => {
+            if(res.ok) {
+                return res;
+            } else {
+                console.log(res);
+                return 0;
+            }
+        })
         .then(json => {
-            console.log('2:', json);
-            return json;
+            if(json === 0) {
+                return 0;
+            } else {
+                json = json.json();
+                console.log('Is it here?');
+                console.log('2:', json);
+                return json;
+            }
         });
     return items;
+}
+
+function screwTarget() {
+    var htmlCode = '<h2>Denied access. Thanks Target</h2>';
+    return htmlCode;
 }
 
 function textToHTML(productText, number) {
@@ -217,35 +237,40 @@ app.get('/s',async function(req,res) {
     var searchValue = params.search.replace(new RegExp(' ', 'g'), '+');
     console.log(searchValue + '\n');
     itemsJSON = await fetchItems(searchValue);
-    console.log('1:', itemsJSON);
+    if(itemsJSON === 0) {
+        res.writeHead(200, { 'Content-Type': 'text/html'});
+        res.end(screwTarget());
+    } else {
+        console.log('1:', itemsJSON);
 
-    
-    var htmlResponse;
-    for(var i = 0; i < itemsJSON.search_response.items.Item.length; i++) {
-        let item = itemsJSON.search_response.items.Item[i];
-        let imageBaseURL = item.images[0].base_url;
-        let itemDescription = item.description;
+        
+        var htmlResponse;
+        for(var i = 0; i < itemsJSON.search_response.items.Item.length; i++) {
+            let item = itemsJSON.search_response.items.Item[i];
+            let imageBaseURL = item.images[0].base_url;
+            let itemDescription = item.description;
 
-        if(itemDescription != '') {
-            let itemPrice = item.price.formatted_current_price;
-            let itemImageURL = imageBaseURL + item.images[0].primary;
+            if(itemDescription != '') {
+                let itemPrice = item.price.formatted_current_price;
+                let itemImageURL = imageBaseURL + item.images[0].primary;
 
-            if(i == 0) {
-                htmlResponse = imageToHTML(itemImageURL, i + 1);
-                htmlResponse += textToHTML(itemDescription, i + 1);
-                htmlResponse += priceToHTML(itemPrice, i + 1);
+                if(i == 0) {
+                    htmlResponse = imageToHTML(itemImageURL, i + 1);
+                    htmlResponse += textToHTML(itemDescription, i + 1);
+                    htmlResponse += priceToHTML(itemPrice, i + 1);
+                }
+                else {
+                    htmlResponse += imageToHTML(itemImageURL, i + 1);
+                    htmlResponse += textToHTML(itemDescription, i + 1);
+                    htmlResponse += priceToHTML(itemPrice, i + 1);
+                }
+            } else {
+                continue;
             }
-            else {
-                htmlResponse += imageToHTML(itemImageURL, i + 1);
-                htmlResponse += textToHTML(itemDescription, i + 1);
-                htmlResponse += priceToHTML(itemPrice, i + 1);
-            }
-        } else {
-            continue;
         }
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.end(htmlResponse);
     }
-    res.writeHead(200, { 'Content-Type': 'text/html' });
-    res.end(htmlResponse);
 });
 
 

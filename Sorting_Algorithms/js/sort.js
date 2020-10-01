@@ -83,7 +83,7 @@ function render() {
             }
         }
         else if(sortNum == 2) {
-            if(count2 == max-2) {
+            if(count2 == max-1) {
                 pauseGame = true;
                 console.log(Date.now() - startTime);
             }
